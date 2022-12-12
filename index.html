@@ -36,28 +36,40 @@ fetch('https://www.fishwatch.gov/api/species')
 app.mount('.app')
 </script>
 <style>
-h1 {
+
+body {
   color: white;
-  text-align: center;
+  list-style: none; 
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(70,130,180,1) 35%, rgba(70,130,0,1) 100%);
 }
+/* .... */
 li {
-  color: white;
+  /* Mobile first */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-body { background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(70,130,180,1) 35%, rgba(70,130,0,1) 100%);
+
+li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-ul {
-  width: 30%;
-  height: 10%;
-  list-style: none;
-  padding: 10px;
+
+img {
+  width: 15%;
+  border-radius: 5px;
+  height: 100%;
+  object-fit: cover;
 }
-img.stretchy {
-width: 100%; /*Tells image to fit to width of parent container*/
+
+@media only screen and (min-width: 768px) {
+  img {
+    flex-direction: row;
+  }
 }
-.container {
-width: 10%; /*Use this to control width of the parent container, hence the image*/
-}
+/* .... */
 </style>
 </body>
 </html>
