@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <div class="app">
+      <h1> All Fishes and Their Photos</h1>
+        <ul v-for="(fish, i) in fishes" :key="i">
+          <li > {{ fish['Species Name'], }} </li>
+          <li> <img :src="fish['Species Illustration Photo'].src" /></li> 
+        </ul>
+      </div>
+</head>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+fetch('https://www.fishwatch.gov/api/species')
+    .then(res => res.json())
+    .then(data => console.log(data))
+    let app = Vue.createApp ({ 
+  data() {
+    return {
+      fishes: [],
+    }
+  },
+  mounted() {
+    fetch('https://www.fishwatch.gov/api/species')
+      .then(res => res.json())
+      .then(data => {
+        this.fishes = data
+      })
+  }
+})
+app.mount('.app')
+</script>
+<style>
+h1 {
+  color: white;
+  text-align: center;
+}
+li {
+  color: white;
+}
+body { background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(70,130,180,1) 35%, rgba(70,130,0,1) 100%);
+}
+ul {
+  width: 30%;
+  height: 10%;
+  list-style: none;
+  padding: 10px;
+}
+img.stretchy {
+width: 100%; /*Tells image to fit to width of parent container*/
+}
+.container {
+width: 10%; /*Use this to control width of the parent container, hence the image*/
+}
+</style>
+</body>
+</html>
